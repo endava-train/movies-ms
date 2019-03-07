@@ -22,7 +22,7 @@ public class Rank {
     private int qualification;
 
     @NotNull
-    private String userId;
+    private int userId;
 
     @ManyToOne
     private Movie movie;

@@ -14,7 +14,9 @@ public class CatalogServiceImp {
 
     private final CatalogRepository catalogRepository;
 
-    public List<Catalog> getCatalogbyUser(int userId, int movieId) {
-        return catalogRepository.getCatalogsByUserIdAndMovieId(userId, movieId);
+    public List<Catalog> getCatalogsByUser(int userId, int movieId) {
+        return catalogRepository.findByUserIdAndMovieId(userId, movieId);
     }
+
+    
 }

@@ -23,7 +23,7 @@ public class Catalog {
 
     @NotNull
     @JsonIgnore
-    private String userId;
+    private int userId;
 
     @ManyToOne
     private Movie movie;
