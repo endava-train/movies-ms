@@ -12,7 +12,6 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-
 @Data
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)

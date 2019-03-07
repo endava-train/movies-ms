@@ -12,15 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping(path="/movies", produces="application/json")
 public class MoviesController {
 
-    private MovieServiceImp movieServiceImp;
-
-    @Autowired
-    public MoviesController(MovieServiceImp movieServiceImp) {
-        this.movieServiceImp = movieServiceImp;
-    }
+    private final MovieServiceImp movieServiceImp;
 
     @GetMapping("/{id}")
     public ResponseEntity<Movie> show(@PathVariable("id") Integer id) {

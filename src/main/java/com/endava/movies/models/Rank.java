@@ -1,6 +1,5 @@
 package com.endava.movies.models;
 
-
 import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
