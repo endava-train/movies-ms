@@ -1,5 +1,6 @@
 package com.endava.movies.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -21,6 +22,7 @@ public class Catalog {
     private String type;
 
     @NotNull
+    @JsonIgnore
     private String userId;
 
     @ManyToOne

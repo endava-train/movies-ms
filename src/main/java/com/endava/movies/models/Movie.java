@@ -1,5 +1,6 @@
 package com.endava.movies.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.endava.movies.models.Catalog;
 import com.endava.movies.models.Rank;
@@ -31,8 +32,10 @@ public class Movie {
     private double popularity;
 
     @OneToMany
+    @JsonIgnore
     private List<Catalog> catalogs;
 
     @OneToMany
+    @JsonIgnore
     private List<Rank> ranks;
 }

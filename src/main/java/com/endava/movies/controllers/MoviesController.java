@@ -20,6 +20,10 @@ public class MoviesController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Movie> show(@PathVariable("id") Integer id) {
+        Movie theMovie = movieServiceImp.show(id);
+        if (theMovie.equals(new Movie()))
+            return new ResponseEntity<>(new Movie(), HttpStatus.NOT_FOUND);
+
         return new ResponseEntity<>(movieServiceImp.show(id), HttpStatus.OK);
     }
 

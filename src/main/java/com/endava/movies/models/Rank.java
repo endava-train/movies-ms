@@ -1,5 +1,6 @@
 package com.endava.movies.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

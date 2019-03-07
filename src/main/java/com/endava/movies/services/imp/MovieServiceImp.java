@@ -8,6 +8,7 @@ import lombok.val;
 import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Optional;
@@ -25,7 +26,12 @@ public class MovieServiceImp implements MovieService {
         if (!movieRepository.existsById(id)) {
             RestTemplate restTemplate = new RestTemplate();
             val URL_API = "https://api.themoviedb.org/3/movie/" + id +"?api_key=400a36ce2fc2a971530a5a8e873014ac";
-            theMovie = restTemplate.getForObject(URL_API , Movie.class);
+            try {
+                theMovie = restTemplate.getForObject(URL_API , Movie.class);
+            }  catch (Exception e) {
+                return theMovie;
+            }
+
             movieRepository.save(theMovie);
         } else {
             Optional<Movie> movie = movieRepository.findById(id);
