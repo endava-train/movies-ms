@@ -38,7 +38,8 @@ public class CatalogServiceImp {
         }
 
         List<Catalog> elements = catalogRepository.findByUserIdAndMovieId(userId, movieId);
-        if (elements.stream().anyMatch(x -> x.getUserId() == userId && x.getMovieId() == movieId))
+
+        if (elements.stream().anyMatch(x -> x.getUserId() == userId && x.getMovieId() == movieId && x.getType().equals(catalog.getType())))
             return new Catalog();
 
         switch (catalog.getType()) {
@@ -52,17 +53,20 @@ public class CatalogServiceImp {
                         catalogRepository.deleteById(x.getId());
                 });
                 break;
-            case "favorite":
 
-                if (elements.stream().anyMatch(x -> x.getType().equals("watched"))) {
+            case "favorites":
+
+
+                if (!elements.stream().anyMatch(x -> x.getType().equals("watched"))) {
                     return new Catalog();
                 }
-                break;
 
+                break;
             case "planToWatch":
                 if (!elements.isEmpty())
                     return new Catalog();
                 break;
+
             default:
                 return new Catalog();
         }
