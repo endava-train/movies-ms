@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.ws.Response;
 import java.util.List;
 
 @RestController
@@ -20,14 +21,24 @@ public class CatalogController {
 
     @GetMapping
     public ResponseEntity<List<Catalog>> getByUser(@RequestBody Catalog catalog) {
-        val userId = catalog.getUserId();
-        val movieId = catalog.getMovieId();
-        return new ResponseEntity<>(catalogServiceImp.getCatalogsByUser(userId, movieId), HttpStatus.OK);
+        return new ResponseEntity<>(catalogServiceImp.getByUser(catalog), HttpStatus.OK);
     }
 
     @PostMapping
-    public String doMagic(@RequestBody Catalog catalog) {
+    public ResponseEntity<Catalog> createByUser(@RequestBody Catalog catalog) {
+        Catalog element = catalogServiceImp.createByUser(catalog);
+        if (element.equals(new Catalog())) {
+            return new ResponseEntity<>(element, HttpStatus.UNPROCESSABLE_ENTITY);
+        }
 
-        return catalog.toString();
+        return new ResponseEntity<>(element, HttpStatus.OK);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<String> deleteByUser(@RequestBody Catalog catalog) {
+        if (catalogServiceImp.deleteByUser(catalog))
+            return new ResponseEntity<>("", HttpStatus.NO_CONTENT);
+
+        return new ResponseEntity<>("", HttpStatus.NOT_FOUND);
     }
 }
