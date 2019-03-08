@@ -25,6 +25,6 @@ public class Catalog {
     @JsonIgnore
     private int userId;
 
-    @ManyToOne
-    private Movie movie;
+    @NotNull
+    private int movieId;
 }

@@ -2,10 +2,7 @@ package com.endava.movies.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.endava.movies.models.Catalog;
-import com.endava.movies.models.Rank;
 import lombok.Data;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -30,12 +27,4 @@ public class Movie {
 
     @NotNull
     private double popularity;
-
-    @OneToMany
-    @JsonIgnore
-    private List<Catalog> catalogs;
-
-    @OneToMany
-    @JsonIgnore
-    private List<Rank> ranks;
 }

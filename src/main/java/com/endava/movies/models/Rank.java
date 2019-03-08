@@ -22,8 +22,9 @@ public class Rank {
     private int qualification;
 
     @NotNull
+    @JsonIgnore
     private int userId;
 
-    @ManyToOne
-    private Movie movie;
+    @NotNull
+    private int movieId;
 }
